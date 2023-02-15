@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logmonitor-demo
+  labels:
+    app: logmonitor-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logmonitor-demo
+  template:
+    metadata:
+      labels:
+        app: logmonitor-demo
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": windows
+      containers:
+      - name: logmonitor-demo
+        image: mjrousos/logmonitor-demo:2019
+        resources:
+          limits:
+            cpu: 250m
+            memory: 250M

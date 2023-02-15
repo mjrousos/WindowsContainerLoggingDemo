@@ -1,0 +1,28 @@
+{
+    "LogConfig": {
+      "sources": [
+        {
+          "type": "EventLog",
+          "startAtOldestRecord": false,
+          "eventFormatMultiLine": false,
+          "channels": [
+            {
+              "name": "Application",
+              "level": "Information"
+            }
+          ]
+        },
+        {
+            "type": "ETW",
+            "eventFormatMultiLine": false,
+            "providers": [
+              {
+                "providerName": "Microsoft-Windows-DotNETRuntime",
+                "providerGuid": "E13C0D23-CCBC-4E12-931B-D9CC2EEE27E4",
+                "level": "Warning"
+              }
+            ]
+          }
+      ]
+    }
+  }
