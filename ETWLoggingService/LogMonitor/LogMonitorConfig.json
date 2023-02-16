@@ -19,7 +19,7 @@
               {
                 "providerName": "Microsoft-Windows-DotNETRuntime",
                 "providerGuid": "E13C0D23-CCBC-4E12-931B-D9CC2EEE27E4",
-                "level": "Warning"
+                "level": "Information"
               }
             ]
           }

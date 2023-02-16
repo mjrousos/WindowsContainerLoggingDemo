@@ -18,7 +18,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-       //     WriteDiagnosticInformationToETW();
+            WriteDiagnosticInformationToEventSource();
             WriteEventToEventLog(stoppingToken);
             await Task.Delay(1000, stoppingToken);
         }
@@ -37,9 +37,9 @@ public class Worker : BackgroundService
 
     // These events can be captured with dotnet-trace
     // Ex: dotnet-trace collect --providers DemoEventSource -p 30892
-    private void WriteDiagnosticInformationToETW()
+    private void WriteDiagnosticInformationToEventSource()
     {
         DemoEventSource.Log.LogData(DateTimeOffset.UtcNow.Ticks);
-        _logger.LogInformation("Diagnostic information written to ETW");
+        _logger.LogInformation("Diagnostic information written to EventSource");
     }
 }

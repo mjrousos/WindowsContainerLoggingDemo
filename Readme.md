@@ -4,10 +4,14 @@ This simple app demonstrates techniques for capturing ETW and event log diagnost
 
 ## Building and running
 
+### Local
+
 To run locally, simply build and execute the ETWLoggingService project.
 
 1. ETW events are only visible when subscribed to. They can be seen by profiling with dotnet-trace and specifying the event source name: `dotnet-trace collect --providers DemoEventSource -p <PID>`
 1. Event log events will appear in the machine's application event log.
+
+### Containerized
 
 To build and run in a container, first build the docker image by building the included Dockerfile. Note that the image is Server Core based (rather than Nanoserer) even though it's a .NET 7 solution. This is because Server Core is required for LogMonitor to monitor ETW events.
 
@@ -27,6 +31,8 @@ The trace can then be copied out of the container and analyzed.
 1. `docker cp 2be:C:\app\dotnet.exe_20230215_104441.nettrace .\dotnet.exe_20230215_104441.nettrace`
     1. Note that the container must be stopped when using Hyper-V containers (Windows 11) before files can be copied from it.
 
+### AKS 
+
 To view diagnostics in Kubernetes, the [recommended solution](https://kubernetes.io/docs/concepts/windows/user-guide) is [LogMonitor](https://github.com/microsoft/windows-container-tools/tree/main/LogMonitor).
 
 To view diagnostics with LogMonitor, use the Dockerfile.LogMontior Dockerfile to build the container.
@@ -36,4 +42,7 @@ To view diagnostics with LogMonitor, use the Dockerfile.LogMontior Dockerfile to
 
 Finally, to view logs from Kubernetes, the LogMonitor-enabled container can be deployed to the cluster.
 
+1. Setup a Windows node pool as per https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-cli#add-a-windows-server-2022-node-pool. 
 1. `kubectl apply -f logmonitor-demo.yaml`
+
+Note that I had to update the Dockerfiles to not use 'shell form' when deploying to AKS due to [containerd/containerd#5067](https://github.com/containerd/containerd/issues/5067).

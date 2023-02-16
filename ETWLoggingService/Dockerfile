@@ -1,6 +1,6 @@
 # It's important that this image be based on Server Core. 
 # Nanoserver does not support LogMonitor reading ETW events.
-FROM mcr.microsoft.com/dotnet/runtime:7.0-windowsservercore-ltsc2019 AS base
+FROM mcr.microsoft.com/dotnet/runtime:7.0-windowsservercore-ltsc2022 AS base
 WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
@@ -18,7 +18,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Sets up event log
-RUN dotnet ETWLoggingService.dll -setup
+# Set up event log
+RUN ["dotnet", "ETWLoggingService.dll", "-setup"]
 
 ENTRYPOINT ["dotnet", "ETWLoggingService.dll"]
