@@ -31,7 +31,7 @@ The trace can then be copied out of the container and analyzed.
 1. `docker cp 2be:C:\app\dotnet.exe_20230215_104441.nettrace .\dotnet.exe_20230215_104441.nettrace`
     1. Note that the container must be stopped when using Hyper-V containers (Windows 11) before files can be copied from it.
 
-### AKS 
+### LogMonitor 
 
 To view diagnostics in Kubernetes, the [recommended solution](https://kubernetes.io/docs/concepts/windows/user-guide) is [LogMonitor](https://github.com/microsoft/windows-container-tools/tree/main/LogMonitor).
 
@@ -39,6 +39,8 @@ To view diagnostics with LogMonitor, use the Dockerfile.LogMontior Dockerfile to
 
 1. `docker build -t logmonitor-demo:latest -f .\ETWLoggingService\LogMonitor.Dockerfile .`
 1. `docker run --rm logmonitor-demo:latest`
+
+### AKS
 
 Finally, to view logs from Kubernetes, the LogMonitor-enabled container can be deployed to the cluster.
 

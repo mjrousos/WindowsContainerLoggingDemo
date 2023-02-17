@@ -4,7 +4,7 @@
 FROM mjrousos/windowscontainer-logging-demo:latest
 
 # Copy LogMonitor and config file
-COPY ETWLoggingService/LogMonitor/LogMonitor.exe ETWLoggingService/LogMonitor/LogMonitorConfig.json /LogMonitor/
+COPY LogMonitor/LogMonitor.exe LogMonitor/LogMonitorConfig.json /LogMonitor/
 
 # https://github.com/containerd/containerd/issues/5067
 # SHELL ["C:\\LogMonitor\\LogMonitor.exe", "cmd", "/S", "/C"]
