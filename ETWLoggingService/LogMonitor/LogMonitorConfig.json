@@ -17,6 +17,8 @@
             "eventFormatMultiLine": false,
             "providers": [
               {
+                // "providerName": "Microsoft-Windows-DotNETRuntime",
+                // "providerGuid": "E13C0D23-CCBC-4E12-931B-D9CC2EEE27E4",
                 "providerName": "DemoEventSource",
                 "providerGuid": "2CA233D9-2F97-4B75-80AB-440F91FB9FD3",
                 "level": "Information"

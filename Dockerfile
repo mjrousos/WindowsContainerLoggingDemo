@@ -18,7 +18,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Set up event log
+# Set up custom event log
 RUN ["dotnet", "ETWLoggingService.dll", "-setup"]
 
 ENTRYPOINT ["dotnet", "ETWLoggingService.dll"]
